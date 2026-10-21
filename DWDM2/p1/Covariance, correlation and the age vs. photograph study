@@ -1,0 +1,17 @@
+pref <- matrix(c(18,22,20,
+                  2,28,40,
+                 20,10,40), nrow = 3, byrow = TRUE,
+               dimnames = list(Age = c("5-6","7-8","9-10"),
+                               Photo = c("A","B","C")))
+pref
+
+# Is there a significant relationship between age and preference?
+chisq.test(pref)          # X-squared ≈ 29.6, df = 4, p < 0.001 -> significant
+chisq.test(pref)$expected # check expected counts
+
+# Covariance and correlation
+df <- as.data.frame(pref)   # note: this would be long format, so use the matrix directly
+cov(pref[, "B"], pref[, "C"])   # -20
+cov(pref)                       # covariance matrix of A, B, C
+cor(pref[, "B"], pref[, "C"])   # about -0.19
+cor(pref)                       # correlation matrix
